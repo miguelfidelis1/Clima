@@ -1,4 +1,3 @@
-// REMOVIDO O 'Radar' DA IMPORTAÇÃO ABAIXO
 import { Wind, Drop, MapPin, Sun, Moon, Lightning } from 'phosphor-react'
 import { motion } from 'framer-motion'
 import Tilt from 'react-parallax-tilt'
@@ -22,7 +21,6 @@ export function WeatherDashboard({ weather, forecast }) {
       variants={container} initial="hidden" animate="show"
       className="grid grid-cols-1 md:grid-cols-4 gap-6 pb-8 relative z-10"
     >
-      {/* 1. CARD PRINCIPAL */}
       <Tilt className="md:col-span-2 row-span-2 h-full min-h-[400px]" perspective={1500} scale={1.02} glareEnable={true} glareColor="#22d3ee" glareMaxOpacity={0.2}>
           <motion.div variants={item} className="h-full bg-gradient-to-br from-blue-900/40 to-blue-950/60 border border-cyan-500/20 backdrop-blur-xl rounded-[3rem] p-8 flex flex-col justify-between shadow-2xl relative overflow-hidden group">
              <div className="absolute -right-32 -top-32 w-80 h-80 bg-cyan-500/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -50,15 +48,12 @@ export function WeatherDashboard({ weather, forecast }) {
           </motion.div>
       </Tilt>
 
-      {/* 2. MAPA INTERATIVO */}
       <motion.div variants={item} className="md:col-span-2 row-span-2 min-h-[400px] bg-blue-950/50 border border-cyan-500/20 backdrop-blur-xl rounded-[3rem] p-2 shadow-xl relative overflow-hidden">
-         {/* Garante que lat/lon existem antes de renderizar o mapa */}
          {weather.coord && (
             <WeatherMap lat={weather.coord.lat} lon={weather.coord.lon} city={weather.name} />
          )}
       </motion.div>
 
-      {/* 3. GRÁFICO */}
       <motion.div variants={item} className="md:col-span-2 bg-blue-950/50 border border-cyan-500/20 backdrop-blur-xl rounded-[2.5rem] p-6 shadow-xl relative overflow-hidden h-[280px]">
          <h3 className="font-bold text-lg mb-6 flex gap-2 text-white items-center uppercase tracking-wider">
             <Lightning className="text-cyan-400" weight="fill" size={20}/> 
@@ -81,7 +76,6 @@ export function WeatherDashboard({ weather, forecast }) {
          </div>
       </motion.div>
 
-      {/* 4. DETALHES MENORES */}
       <Tilt className="h-full" scale={1.05}>
         <motion.div variants={item} className="h-full bg-blue-900/30 border border-cyan-500/20 backdrop-blur-xl rounded-[2rem] p-6 flex flex-col items-center justify-center gap-3 shadow-lg group">
           <div className="p-3 bg-cyan-500/10 rounded-full group-hover:bg-cyan-500/20 transition-colors">

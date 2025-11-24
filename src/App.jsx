@@ -18,16 +18,15 @@ function App() {
     return () => clearInterval(timer)
   }, [])
 
-  // Seleção de vídeo cinemático
   const getBgVideo = () => {
-    if (!weather) return 'https://cdn.pixabay.com/video/2016/09/21/5320-183786499_large.mp4' // Espaço
+    if (!weather) return 'https://cdn.pixabay.com/video/2016/09/21/5320-183786499_large.mp4'
     const main = weather.weather[0].main.toLowerCase()
-    if (main.includes('clear')) return 'https://cdn.pixabay.com/video/2021/03/13/67888-523684463_large.mp4' // Sol Oceano
-    if (main.includes('cloud')) return 'https://cdn.pixabay.com/video/2019/04/13/22792-330685934_large.mp4' // Nuvens
-    if (main.includes('rain') || main.includes('drizzle')) return 'https://cdn.pixabay.com/video/2021/08/04/83868-583525492_large.mp4' // Chuva Vidro
-    if (main.includes('snow')) return 'https://cdn.pixabay.com/video/2016/01/06/1865-151042571_large.mp4' // Neve
-    if (main.includes('thunder')) return 'https://cdn.pixabay.com/video/2020/06/18/42369-432240905_large.mp4' // Raios
-    return 'https://cdn.pixabay.com/video/2020/05/25/40149-424177693_large.mp4' // Default
+    if (main.includes('clear')) return 'https://cdn.pixabay.com/video/2021/03/13/67888-523684463_large.mp4'
+    if (main.includes('cloud')) return 'https://cdn.pixabay.com/video/2019/04/13/22792-330685934_large.mp4'
+    if (main.includes('rain') || main.includes('drizzle')) return 'https://cdn.pixabay.com/video/2021/08/04/83868-583525492_large.mp4'
+    if (main.includes('snow')) return 'https://cdn.pixabay.com/video/2016/01/06/1865-151042571_large.mp4'
+    if (main.includes('thunder')) return 'https://cdn.pixabay.com/video/2020/06/18/42369-432240905_large.mp4'
+    return 'https://cdn.pixabay.com/video/2020/05/25/40149-424177693_large.mp4'
   }
 
   const handleSearch = async (e) => {
@@ -38,7 +37,6 @@ function App() {
         const weatherData = await getWeather(city)
         const forecastData = await getForecast(city)
         if (weatherData && forecastData) {
-           // Filtra para pegar 1 previsão por dia (aprox. meio-dia)
           const dailyForecast = forecastData.list.filter((reading) => 
             reading.dt_txt.includes("12:00:00")
           ).slice(0, 5)
@@ -56,7 +54,6 @@ function App() {
   return (
     <div className="relative min-h-screen font-sans overflow-hidden text-white selection:bg-cyan-500/30 selection:text-cyan-100 bg-slate-950">
       
-      {/* CAMADA DE VÍDEO E COR (DEEP OCEAN) */}
       <div className="fixed inset-0 z-0">
         <video
           key={weather ? weather.weather[0].main : 'default'}
@@ -65,7 +62,6 @@ function App() {
         >
           <source src={getBgVideo()} type="video/mp4" />
         </video>
-        {/* A mágica do azul profundo acontece aqui */}
         <div className="absolute inset-0 bg-blue-950/80 mix-blend-multiply perspective-distant"></div> 
         <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-blue-950/50 to-transparent"></div>
         <div className="absolute inset-0 opacity-30 bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] mix-blend-overlay"></div>
@@ -75,7 +71,6 @@ function App() {
         
         <SearchBar city={city} setCity={setCity} handleSearch={handleSearch} dateTime={dateTime} />
 
-        {/* Estado de Erro */}
         {error && !loading && (
             <div className="flex-1 flex items-center justify-center">
                 <div className="bg-red-950/50 border border-red-500/30 p-6 rounded-2xl backdrop-blur-md text-red-200 font-medium animate-pulse">
@@ -84,7 +79,6 @@ function App() {
             </div>
         )}
 
-        {/* Estado de Carregamento Sci-Fi */}
         {loading && (
            <div className="flex-1 flex flex-col items-center justify-center z-50">
              <div className="relative flex items-center justify-center">

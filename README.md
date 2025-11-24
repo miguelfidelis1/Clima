@@ -2,8 +2,7 @@
 
 Uma estação meteorológica futurista desenvolvida com **React** e **Vite**. O projeto consome a OpenWeatherMap API para exibir dados climáticos globais com uma interface imersiva "Sci-Fi", inspirada em dashboards de comando militar e oceanografia.
 
-![Project Preview](public/vite.svg) 
-*(Dica: Tire um print da tela inicial e do dashboard e coloque aqui depois)*
+![Project Preview](https://i.ibb.co/TMKFThrY/Captura-de-tela-2025-11-24-014131.png) 
 
 ## 🚀 Tecnologias Utilizadas
 
@@ -45,4 +44,4 @@ Uma estação meteorológica futurista desenvolvida com **React** e **Vite**. O 
     ```
 
 ---
-Desenvolvido por [Seu Nome] 🚀
+Desenvolvido por Miguel Fidelis 🚀

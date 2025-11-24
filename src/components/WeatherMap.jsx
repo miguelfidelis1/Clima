@@ -3,7 +3,6 @@ import 'leaflet/dist/leaflet.css'
 import { MapPin } from 'phosphor-react'
 import L from 'leaflet'
 
-// Correção para o ícone padrão do Leaflet que buga no React
 import icon from 'leaflet/dist/images/marker-icon.png';
 import iconShadow from 'leaflet/dist/images/marker-shadow.png';
 
@@ -15,10 +14,9 @@ let DefaultIcon = L.icon({
 });
 L.Marker.prototype.options.icon = DefaultIcon;
 
-// Componente auxiliar para mover a câmera quando a cidade muda
 function ChangeView({ center }) {
   const map = useMap();
-  map.setView(center, 10); // 10 é o zoom
+  map.setView(center, 10);
   return null;
 }
 
@@ -28,10 +26,8 @@ export function WeatherMap({ lat, lon, city }) {
   return (
     <div className="h-full w-full relative rounded-[2rem] overflow-hidden border border-cyan-500/20 shadow-inner group">
       
-      {/* Overlay "Hacker" para deixar o mapa azulado/escuro */}
       <div className="absolute inset-0 pointer-events-none z-[400] bg-blue-900/20 mix-blend-overlay"></div>
       
-      {/* Título Flutuante */}
       <div className="absolute top-4 left-4 z-[400] bg-blue-950/80 backdrop-blur-md px-4 py-2 rounded-full border border-cyan-500/30 flex items-center gap-2">
          <MapPin className="text-cyan-400" size={16} weight="fill"/>
          <span className="text-xs font-bold text-cyan-100 tracking-widest uppercase">Satélite: {city}</span>
@@ -42,11 +38,10 @@ export function WeatherMap({ lat, lon, city }) {
         zoom={10} 
         scrollWheelZoom={false} 
         className="h-full w-full z-0"
-        style={{ background: '#0f172a' }} // Fundo azul escuro enquanto carrega
+        style={{ background: '#0f172a' }}
       >
         <ChangeView center={position} />
         
-        {/* Truque CSS: filter invert grayscale deixa o mapa Dark Mode */}
         <TileLayer
           attribution='&copy; OpenStreetMap'
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"

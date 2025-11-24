@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion'
 import { TypeAnimation } from 'react-type-animation'
-// CORREÇÃO AQUI: Removido MapPinOrtho e garantido MapPin
 import { Globe, CloudRain, Sun, Snowflake, Lightning, MapPin } from 'phosphor-react'
 
 const FloatingTag = ({ city, temp, icon: Icon, delay, x, y }) => (
@@ -31,14 +30,12 @@ export function WelcomeScreen() {
   return (
     <div className="flex-1 flex flex-col items-center justify-center relative z-10 w-full overflow-hidden">
       
-      {/* FUNDO: Elementos de Radar Sci-Fi */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
          <div className="w-[600px] h-[600px] border border-cyan-500/5 rounded-full border-dashed animate-spin-slow" />
          <div className="absolute w-[800px] h-[800px] border border-blue-500/5 rounded-full opacity-40 animate-reverse-spin" />
          <div className="absolute w-[400px] h-[400px] bg-cyan-500/5 rounded-full blur-[100px] animate-pulse-soft" />
       </div>
 
-      {/* Tags Orbitais */}
       <div className="absolute inset-0 w-full max-w-6xl mx-auto pointer-events-none">
           <FloatingTag city="Tokyo HQ" temp="18°C" icon={CloudRain} delay={0} x="15%" y="25%" />
           <FloatingTag city="NY Station" temp="-2°C" icon={Snowflake} delay={2.5} x="75%" y="35%" />
@@ -46,7 +43,6 @@ export function WelcomeScreen() {
           <FloatingTag city="Dubai Sat" temp="38°C" icon={Sun} delay={1.5} x="70%" y="65%" />
       </div>
 
-      {/* Card Central de Boas-Vindas */}
       <motion.div 
         initial={{ opacity: 0, scale: 0.95, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -84,13 +80,11 @@ export function WelcomeScreen() {
           />
         </div>
 
-        {/* Indicador Visual CORRIGIDO */}
         <motion.div 
             animate={{ y: [0, -15, 0], opacity: [0.5, 1, 0.5] }}
             transition={{ duration: 2.5, repeat: Infinity }}
             className="absolute -top-16 left-1/2 transform -translate-x-1/2 hidden md:flex flex-col items-center"
         >
-            {/* Usando MapPin normal aqui */}
             <MapPin className="text-cyan-400 mb-2" size={24} weight="fill" />
             <div className="w-px h-10 bg-gradient-to-t from-cyan-400/50 to-transparent"></div>
         </motion.div>
